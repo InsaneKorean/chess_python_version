@@ -105,9 +105,9 @@ class ChessBoard:
 
 
 
-        
-chess_board = ChessBoard()
-print("CheckExist(0, 0) : ", chess_board.CheckExist(0, 0))
-print( "return val: ", chess_board.Movepiece(0, 0, 4, 4))
-chess_board.ShowBoard()
-print( "SearchPiece(r, w)", chess_board.SearchPiece('r', 'w'))
+if __name__ == "__main__":         
+    chess_board = ChessBoard()
+    print("CheckExist(0, 0) : ", chess_board.CheckExist(0, 0))
+    print( "return val: ", chess_board.Movepiece(0, 0, 4, 4))
+    chess_board.ShowBoard()
+    print( "SearchPiece(r, w)", chess_board.SearchPiece('r', 'w'))
