@@ -1,3 +1,4 @@
+
 class ChessBoard:
     def __init__(self):
         self.matrix = [[0 for y in range(8)] for x in range (8)]
@@ -103,7 +104,21 @@ class ChessBoard:
             print("error")
             return -1
 
+def CheckKingMove(board, x_orig, y_orig, x_dest, y_dest):
+	if board.CheckExist(x_orig, y_orig) != 1:
+		return -1
+	if abs(x_orig - x_dest) == 1 and abs(y_orig - y_dest) == 1:
+		return 1
+	else:
+		return 0
 
+def CheckQueenMove(board, x_orig, y_orig, x_dest, y_dest):
+def CheckRookMove(board, x_orig, y_orig, x_dest, y_dest):
+def CheckBishopMove(board, x_orig, y_orig, x_dest, y_dest):
+def CheckPoneMove(board, x_orig, y_orig, x_dest, y_dest):
+def CheckNightMove(board, x_orig, y_orig, x_dest, y_dest):
+def CheckMove(board, x_orig, y_orig, x_dest, y_dest):
+def CheckKingSafe(board):
 
 if __name__ == "__main__":         
     chess_board = ChessBoard()
