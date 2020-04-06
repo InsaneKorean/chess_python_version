@@ -104,21 +104,80 @@ class ChessBoard:
             print("error")
             return -1
 
-def CheckKingMove(board, x_orig, y_orig, x_dest, y_dest):
-	if board.CheckExist(x_orig, y_orig) != 1:
+	#dosen't satisfy 1
+	#satisfy 0
+def CheckEssential(board, x_orig, y_orig, x_dest, y_dest):
+	if x_orig == x_dest and y_orig == y_dest:
+		print("orig pos == dest_pos")
 		return -1
+	elif board.CheckExist(x_orig, y_orig) != 1:
+		return -1
+	else:
+		return 0
+
+
+def CheckKingOrbit(board, x_orig, y_orig, x_dest, y_dest):
+	if CheckEssential(board, x_orig, y_orig, x_dest, y_dest) != 0:
+		return -1
+
 	if abs(x_orig - x_dest) == 1 and abs(y_orig - y_dest) == 1:
 		return 1
 	else:
 		return 0
 
-def CheckQueenMove(board, x_orig, y_orig, x_dest, y_dest):
-def CheckRookMove(board, x_orig, y_orig, x_dest, y_dest):
-def CheckBishopMove(board, x_orig, y_orig, x_dest, y_dest):
-def CheckPoneMove(board, x_orig, y_orig, x_dest, y_dest):
-def CheckNightMove(board, x_orig, y_orig, x_dest, y_dest):
-def CheckMove(board, x_orig, y_orig, x_dest, y_dest):
-def CheckKingSafe(board):
+def CheckQueenOrbit(board, x_orig, y_orig, x_dest, y_dest):
+	if CheckEssential(board, x_orig, y_orig, x_dest, y_dest) != 0:
+		return -1
+
+	if x_orig == x_dest:
+		if y_dest > y_orig:
+			for y in range(y_orig + 1, y_dest):
+				if board.CheckExist(x_orig, y) != 0:
+					return 0	
+		if y_dest < y_orig:
+			for y in range(y_dest + 1, y_orig):
+				if board.CheckExist(x_orig, y) != 0:
+					return 0	
+		return 1
+	elif y_orig == y_dest:
+		if x_dest > x_orig:
+			for x in range(x_orig + 1, x_dest - 1):
+				if board.CheckExist(x, y_orig) != 0:
+					return 0	
+		if x_dest < x_orig:
+			for x in range(x_dest + 1, x_orig- 1):
+				if board.CheckExist(x, y_orig) != 0:
+					return 0	
+		return 1
+	elif abs(x_orig - x_dest) == abs(y_orig - y_dest):
+		x_variance = abs(x_dest - x_orig) / x_dest - x_orig	
+		y_variance = abs(y_dest - y_orig) / y_dest - y_orig	
+
+		return 1
+	else:
+		return 0
+	
+def CheckRookOrbit(board, x_orig, y_orig, x_dest, y_dest):
+	if CheckEssential(board, x_orig, y_orig, x_dest, y_dest) != 0:
+		return -1
+	
+	if x_orig == x_dest:
+		return 1
+	else:
+		return 0
+	
+def CheckBishopOrbit(board, x_orig, y_orig, x_dest, y_dest):
+	if CheckEssential(board, x_orig, y_orig, x_dest, y_dest) != 0:
+		return -1
+	
+def CheckPoneOrbit(board, x_orig, y_orig, x_dest, y_dest):
+	if CheckEssential(board, x_orig, y_orig, x_dest, y_dest) != 0:
+		return -1
+
+def CheckNightOrbit(board, x_orig, y_orig, x_dest, y_dest):
+	if CheckEssential(board, x_orig, y_orig, x_dest, y_dest) != 0:
+		return -1
+#def CheckKingSafe(board):
 
 if __name__ == "__main__":         
     chess_board = ChessBoard()
