@@ -1,3 +1,5 @@
+import pdb
+
 
 class ChessBoard:
     def __init__(self):
@@ -149,10 +151,13 @@ def CheckQueenOrbit(board, x_orig, y_orig, x_dest, y_dest):
 				if board.CheckExist(x, y_orig) != 0:
 					return 0	
 		return 1
-	elif abs(x_orig - x_dest) == abs(y_orig - y_dest):
-		x_variance = abs(x_dest - x_orig) / x_dest - x_orig	
-		y_variance = abs(y_dest - y_orig) / y_dest - y_orig	
 
+	elif abs(x_orig - x_dest) == abs(y_orig - y_dest):
+		x_variance = int(abs(x_dest - x_orig) / (x_dest - x_orig))
+		y_variance = int(abs(y_dest - y_orig) / (y_dest - y_orig))
+		for i in range(1, abs(x_dest - x_orig)):
+			if board.CheckExist(x_orig + x_variance * i , y_orig + y_variance * i) != 0:
+				return 0
 		return 1
 	else:
 		return 0
